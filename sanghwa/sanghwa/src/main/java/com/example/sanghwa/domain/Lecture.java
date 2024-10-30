@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
 @Entity
 @NoArgsConstructor
 public class Lecture {
