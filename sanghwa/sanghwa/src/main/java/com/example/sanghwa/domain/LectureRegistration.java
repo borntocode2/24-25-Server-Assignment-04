@@ -1,12 +1,16 @@
 package com.example.sanghwa.domain;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity //DB에 같은 이름의 테이블하고 매핑된다.
 public class LectureRegistration {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne //lecture의 기본키를 가져온다
@@ -17,3 +21,4 @@ public class LectureRegistration {
     @JoinColumn(name = "student_id")//기본키를 외래키로 사용
     private Student student;
 }
+
