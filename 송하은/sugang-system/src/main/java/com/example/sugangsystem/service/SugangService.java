@@ -4,6 +4,7 @@ import com.example.sugangsystem.domain.Course;
 import com.example.sugangsystem.domain.Student;
 import com.example.sugangsystem.domain.Sugang;
 import com.example.sugangsystem.dto.request.sugang.RegisterSugangRequestDto;
+import com.example.sugangsystem.dto.response.sugang.GetCountByCourseResponseDto;
 import com.example.sugangsystem.dto.response.sugang.GetSugangByStudentIdResponseDto;
 import com.example.sugangsystem.dto.response.sugang.RegisterSugangResponseDto;
 import com.example.sugangsystem.repository.CourseRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -59,5 +61,15 @@ public class SugangService {
         Sugang sugang = sugangRepository.findByIdAndStudent_Id(sugangId, studentId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 수강내역입니다."));
         sugangRepository.delete(sugang);
+    }
+
+    // 추가 기능 - 강의별로 수강신청 인원 구하기 (통계)
+    @Transactional(readOnly = true)
+    public List<GetCountByCourseResponseDto> getCountByCourse() {
+        List<Map<String,Object>> statistics = sugangRepository.countSugangsByCourse();
+
+        return statistics.stream()
+                .map(GetCountByCourseResponseDto::from)
+                .toList();
     }
 }

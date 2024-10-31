@@ -1,6 +1,7 @@
 package com.example.sugangsystem.controller;
 
 import com.example.sugangsystem.dto.request.sugang.RegisterSugangRequestDto;
+import com.example.sugangsystem.dto.response.sugang.GetCountByCourseResponseDto;
 import com.example.sugangsystem.dto.response.sugang.GetSugangByStudentIdResponseDto;
 import com.example.sugangsystem.dto.response.sugang.RegisterSugangResponseDto;
 import com.example.sugangsystem.service.SugangService;
@@ -37,5 +38,9 @@ public class SugangController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
+    // 추가 기능 - 강의별 수강신청 인원을 조회한다.
+    @GetMapping("/statistics")
+    public ResponseEntity<List<GetCountByCourseResponseDto>> getSugangStatistics() {
+        return new ResponseEntity<>(sugangService.getCountByCourse(), HttpStatus.OK);
+    }
 }
