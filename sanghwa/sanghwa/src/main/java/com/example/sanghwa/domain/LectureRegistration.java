@@ -20,5 +20,9 @@ public class LectureRegistration {
     @ManyToOne //student의 기본키를 가져온다
     @JoinColumn(name = "student_id")//기본키를 외래키로 사용
     private Student student;
+
+    public void update(Lecture lecture){
+        this.lecture = lecture;
+    }
 }
 
