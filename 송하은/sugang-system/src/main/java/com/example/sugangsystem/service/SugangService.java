@@ -47,10 +47,11 @@ public class SugangService {
                 .toList();
     }
 
-
-    // 전체 학생의 전체 수강신청 목록 조회
-
-
-    // 해당 수강신청 삭제
-
+    // 학생이 원하는 수강신청 삭제
+    @Transactional
+    public void cancelSugang(Long studentId, Long sugangId) {
+        Sugang sugang = sugangRepository.findByIdAndStudent_Id(sugangId, studentId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 수강내역입니다."));
+        sugangRepository.delete(sugang);
+    }
 }

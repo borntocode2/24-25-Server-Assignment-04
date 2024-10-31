@@ -30,4 +30,12 @@ public class SugangController {
         return new ResponseEntity<>(sugangService.getSugangListByStudentId(studentId), HttpStatus.OK);
     }
 
+    // 학생 ID 로 수강신청을 취소한다.
+    @DeleteMapping("/cancel/{studentId}/{sugangId}")
+    public ResponseEntity<Void> cancelSugangByStudentId(@PathVariable Long studentId, @PathVariable Long sugangId) {
+        sugangService.cancelSugang(studentId, sugangId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }
