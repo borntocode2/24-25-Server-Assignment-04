@@ -1,22 +1,28 @@
 package com.example.sugangsystem.dto.response.sugang;
 
 import com.example.sugangsystem.domain.Sugang;
-import com.example.sugangsystem.dto.response.course.CourseInfoResponseDto;
-import com.example.sugangsystem.dto.response.course.CourseListResponseDto;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Builder
-public class GetSugangListByStudentIdResponseDto {
+public class GetSugangByStudentIdResponseDto {
 
     private Long sugangId;
     private Long courseId;
     private String courseTitle;
     private Date date;
 
+    // entity -> dto
+    public static GetSugangByStudentIdResponseDto from(Sugang sugang) {
+        return GetSugangByStudentIdResponseDto.builder()
+                .sugangId(sugang.getId())
+                .courseId(sugang.getCourse().getId())
+                .courseTitle(sugang.getCourse().getTitle())
+                .date(sugang.getDate())
+                .build();
+    }
 
 }
