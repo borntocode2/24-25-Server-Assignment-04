@@ -14,12 +14,4 @@ public class RegisterSugangRequestDto {
     private Long courseId;
     private Date date;
 
-    @Builder
-    public RegisterSugangRequestDto(Long studentId, Long courseId, Date date) {
-        this.studentId = studentId;
-        this.courseId = courseId;
-        this.date = new Date();
-    }
-
-
 }

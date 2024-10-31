@@ -8,16 +8,8 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class StudentUpdateRequestDto {
     private String name;
     private String major;
-
-    public Student toEntity() {
-        return Student.builder()
-                .name(name)
-                .major(major)
-                .build();
-    }
 
 }

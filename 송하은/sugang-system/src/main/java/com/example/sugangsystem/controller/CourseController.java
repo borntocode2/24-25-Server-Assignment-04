@@ -47,5 +47,4 @@ public class CourseController {
         courseService.deleteById(courseId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
