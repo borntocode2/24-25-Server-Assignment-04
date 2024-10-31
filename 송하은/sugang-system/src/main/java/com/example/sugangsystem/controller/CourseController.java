@@ -43,7 +43,7 @@ public class CourseController {
 
     // 강의 삭제
     @DeleteMapping("/{courseId}")
-    public ResponseEntity<CourseInfoResponseDto> delete(@PathVariable Long courseId) {
+    public ResponseEntity<Void> delete(@PathVariable Long courseId) {
         courseService.deleteById(courseId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

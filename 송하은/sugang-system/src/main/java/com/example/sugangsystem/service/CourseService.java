@@ -21,6 +21,7 @@ public class CourseService {
     private final CourseRepository courseRepository;
 
     // 강의 생성 - create
+    @Transactional
     public CourseInfoResponseDto save(CourseSaveRequestDto courseSaveRequestDto) {
         Course course = courseSaveRequestDto.toEntity();
         courseRepository.save(course);
@@ -29,6 +30,7 @@ public class CourseService {
     }
 
     // 강의 한 개 조회 - read
+    @Transactional(readOnly = true)
     public CourseInfoResponseDto findByCourseId(Long id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강의입니다."));
@@ -37,6 +39,7 @@ public class CourseService {
     }
 
     // 강의 전체 목록 조회 - read
+    @Transactional(readOnly = true)
     public CourseListResponseDto findAll() {
         List<Course> courses = courseRepository.findAll();
         List<CourseInfoResponseDto> courseDtos = courses.stream()
@@ -57,6 +60,7 @@ public class CourseService {
     }
 
     // 강의 삭제
+    @Transactional
     public void deleteById(Long id) {
         courseRepository.deleteById(id);
     }

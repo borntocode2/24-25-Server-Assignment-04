@@ -43,7 +43,7 @@ public class StudentController {
 
     // 학생 삭제
     @DeleteMapping("/{studentId}")
-    public ResponseEntity<StudentInfoResponseDto> deleteByStudentId(@PathVariable Long studentId) {
+    public ResponseEntity<Void> deleteByStudentId(@PathVariable Long studentId) {
         studentService.deleteStudentById(studentId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
