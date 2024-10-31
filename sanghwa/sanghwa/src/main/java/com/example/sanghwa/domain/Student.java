@@ -17,16 +17,20 @@ public class Student {
     private Long id;
     private String name;
 
-    @OneToMany
-    private List<LectureRegistration> LectureRegistrations = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LectureRegistration> lectureRegistrations = new ArrayList<>();
 
     @Builder
-    public Student(Long id, String name, List<LectureRegistration> LectureRegistrations) {
+    public Student(Long id, String name, List<LectureRegistration> lectureRegistrations) {
         this.id = id;
         this.name = name;
-        this.LectureRegistrations = LectureRegistrations;
+        this.lectureRegistrations = lectureRegistrations;
     }
 
+    public void update(String name)
+    {
+        this.name = name;
+    }
 
 
 
