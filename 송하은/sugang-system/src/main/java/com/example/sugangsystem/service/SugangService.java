@@ -31,6 +31,12 @@ public class SugangService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다."));
         Course course = courseRepository.findById(registerSugangRequestDto.getCourseId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강의입니다."));
+
+        // 중복 수강신청 여부 체크
+        if(sugangRepository.existsByStudentAndCourse(student, course)){
+            throw new IllegalStateException("이미 신청한 강의입니다.");
+        }
+
         Sugang sugang = Sugang.createSugang(student,course);
         sugangRepository.save(sugang);
 
