@@ -1,15 +1,14 @@
-package com.example.sugangsystem.dto.request;
+package com.example.sugangsystem.dto.request.student;
 
 import com.example.sugangsystem.domain.Student;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public class StudentUpdateRequestDto {
+@NoArgsConstructor
+public class StudentSaveRequestDto {
     private String name;
     private String major;
 
@@ -19,5 +18,4 @@ public class StudentUpdateRequestDto {
                 .major(major)
                 .build();
     }
-
 }

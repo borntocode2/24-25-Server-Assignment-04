@@ -1,9 +1,9 @@
 package com.example.sugangsystem.controller;
 
-import com.example.sugangsystem.dto.request.StudentSaveRequestDto;
-import com.example.sugangsystem.dto.request.StudentUpdateRequestDto;
-import com.example.sugangsystem.dto.response.StudentInfoResponseDto;
-import com.example.sugangsystem.dto.response.StudentListResponseDto;
+import com.example.sugangsystem.dto.request.student.StudentSaveRequestDto;
+import com.example.sugangsystem.dto.request.student.StudentUpdateRequestDto;
+import com.example.sugangsystem.dto.response.student.StudentInfoResponseDto;
+import com.example.sugangsystem.dto.response.student.StudentListResponseDto;
 import com.example.sugangsystem.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

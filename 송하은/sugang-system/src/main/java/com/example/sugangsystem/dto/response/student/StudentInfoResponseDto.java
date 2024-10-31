@@ -1,4 +1,4 @@
-package com.example.sugangsystem.dto.response;
+package com.example.sugangsystem.dto.response.student;
 
 import com.example.sugangsystem.domain.Student;
 import lombok.Builder;
