@@ -18,9 +18,7 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     public StudentResponseDto save(StudentSaveDto studentSaveDto) { //saveDto로 받고
-        Student student = Student.builder() //student객체에 saveDto정보를 대입
-                .name(studentSaveDto.getName())
-                .build();
+        Student student = studentSaveDto.toEntity(); //student객체에 saveDto정보를 대입
         studentRepository.save(student); //student객체 저장
         return StudentResponseDto.from(student); //ResponseDto로 반환
     }

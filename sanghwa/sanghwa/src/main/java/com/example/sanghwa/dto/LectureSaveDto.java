@@ -16,6 +16,7 @@ public class LectureSaveDto {
     public Lecture toEntity(){
         return Lecture.builder()
                 .id(id)
+                .title(title)
                 .build();
     }
 }

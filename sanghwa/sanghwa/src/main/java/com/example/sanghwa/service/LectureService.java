@@ -17,9 +17,7 @@ public class LectureService {
     private final LectureRepository lectureRepository;
 
     public LectureResponseDto save(LectureSaveDto lectureSaveDto) { //saveDto로 받고
-        Lecture lecture = Lecture.builder() //lecture객체에 saveDto정보를 대입
-                .title(lectureSaveDto.getTitle())
-                .build();
+        Lecture lecture = lectureSaveDto.toEntity();
         lectureRepository.save(lecture); //lecture객체 저장
         return LectureResponseDto.from(lecture); //ResponseDto로 반환
     }

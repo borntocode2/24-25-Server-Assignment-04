@@ -2,7 +2,10 @@ package com.example.sanghwa.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -20,6 +23,13 @@ public class LectureRegistration {
     @ManyToOne //student의 기본키를 가져온다
     @JoinColumn(name = "student_id")//기본키를 외래키로 사용
     private Student student;
+
+    @Builder
+    public LectureRegistration(Long id, Lecture lecture, Student student) {
+        this.id = id;
+        this.lecture = lecture;
+        this.student = student;
+    }
 
     public void update(Lecture lecture){
         this.lecture = lecture;
