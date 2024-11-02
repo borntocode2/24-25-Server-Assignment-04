@@ -57,7 +57,7 @@ public class CourseService {
         courseRepository.deleteById(courseId);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public CourseListResponseDto findAllCourses() {
         List<Course> courses = courseRepository.findAll();
 

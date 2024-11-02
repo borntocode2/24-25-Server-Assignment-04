@@ -18,4 +18,6 @@ public class CourseRegistrationController {
     public ResponseEntity<?> doRegistration(@PathVariable Long courseId, Long studentId) {
         return new ResponseEntity<>(courseRegistrationService.doRegistration(courseId, studentId), HttpStatus.OK);
     }
+
+
 }

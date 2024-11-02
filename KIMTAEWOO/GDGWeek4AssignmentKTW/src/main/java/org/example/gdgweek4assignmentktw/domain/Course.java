@@ -15,7 +15,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 1씩 자동으로 올라가도록 설정
     @Column(name = "course_id")
-    private Long CourseId;
+    private Long courseId;
 
     @Column(name = "course_number")
     private Long courseNumber;

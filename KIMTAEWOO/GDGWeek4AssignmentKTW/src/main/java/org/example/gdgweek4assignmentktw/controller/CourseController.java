@@ -36,15 +36,15 @@ public class CourseController {
     }
 
     // courseId 로 강의 삭제
-    @DeleteMapping("/courseId")
-    public ResponseEntity<String> deleteByLectureId(@PathVariable Long courseId) {
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<String> deleteByCourseId(@PathVariable Long courseId) {
         courseService.deleteByCourseId(courseId);
         String deleteResponseMessage = courseId + "번 강의가 성공적으로 삭제되었습니다.";
         return new ResponseEntity<>(deleteResponseMessage, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<CourseListResponseDto> findAllLectures() {
+    public ResponseEntity<CourseListResponseDto> findAllCourses() {
         return new ResponseEntity<>(courseService.findAllCourses(), HttpStatus.OK);
     }
 
