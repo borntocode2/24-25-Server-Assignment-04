@@ -22,7 +22,7 @@ public class CourseService {
     @Transactional
     public CourseInfoResponseDto save(CourseSaveRequestDto dto) {
         if(courseRepository.existsByCourseNumber(dto.getCourseNumber())){
-            throw new CourseAlreadyExistsException("이미 존재하는 강의번호입니다");
+            throw new CourseAlreadyExistsException("이미 존재하는 강의번호입니다. 다른 강의번호를 사용해주세요.");
         }
 
         Course saveCourse = dto.toEntity();
@@ -45,7 +45,7 @@ public class CourseService {
                 .orElseThrow( () -> new IllegalArgumentException("존재하지 않는 강의입니다."));
 
         if(courseRepository.existsByCourseNumber(dto.getCourseNumber())){
-            throw new CourseAlreadyExistsException("이미 존재하는 강의번호입니다");
+            throw new CourseAlreadyExistsException("이미 존재하는 강의번호입니다. 다른 강의번호를 사용해주세요.");
         }
 
         updateCourse.update(dto);
@@ -56,7 +56,7 @@ public class CourseService {
     @Transactional
     public void deleteByCourseId(Long courseId) {
         if(!courseRepository.existsById(courseId)) {
-            throw new StudentNotExistsException("존재하지 않는 과목입니다");
+            throw new StudentNotExistsException("존재하지 않는 과목입니다.");
         }
         courseRepository.deleteById(courseId);
     }

@@ -32,9 +32,9 @@ public class CourseRegistrationService {
     @Transactional
     public CourseRegistrationResponseDto doRegistration(CourseRegistrationRequestDto dto) {
         Course course = courseRepository.findById(dto.getCourseId())
-                .orElseThrow(() -> new CourseNotExistsException("존재하지 않는 강의입니다"));
+                .orElseThrow(() -> new CourseNotExistsException("존재하지 않는 강의입니다."));
         Student student = studentRepository.findById(dto.getStudentId())
-                .orElseThrow(() -> new StudentNotExistsException("존재하지 않는 학생입니다"));
+                .orElseThrow(() -> new StudentNotExistsException("존재하지 않는 학생입니다."));
 
         /*
         builder() 이 static 메서드인 이유
@@ -55,7 +55,7 @@ public class CourseRegistrationService {
     @Transactional
     public CourseRegistrationResponseDto checkByCourseRegistrationId(Long registrationId) {
         CourseRegistration foundRegistration = courseRegistrationRepository.findById(registrationId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 수강신청 내역입니다"));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 수강신청 내역입니다. 수강신천 번호를 확인해 주세요."));
 
         return CourseRegistrationResponseDto.includeAllFieldFrom(foundRegistration);
     }
@@ -63,7 +63,7 @@ public class CourseRegistrationService {
     @Transactional
     public void cancelByCourseRegistrationId(Long registrationId) {
         if(!courseRegistrationRepository.existsById(registrationId)) {
-            throw new StudentNotExistsException("존재하지 않는 수강신청 내역입니다");
+            throw new StudentNotExistsException("존재하지 않는 수강신청 내역입니다. 수강신청 번호를 확인해 주세요.");
         }
         courseRegistrationRepository.deleteById(registrationId);
     }
@@ -82,11 +82,6 @@ public class CourseRegistrationService {
     @Transactional(readOnly = true)
     public CourseRegistrationListResponseDto findAllRegistrationsByStudentNumber(Long studentNumber) {
         List<CourseRegistration> registrations = courseRegistrationRepository.findByStudent_StudentNumber(studentNumber);
-
-        if(registrations.isEmpty()) {
-            System.out.println("수강신청 내역이 없습니다");
-            return CourseRegistrationListResponseDto.returnEmptyList();
-        }
 
         List<CourseRegistrationResponseDto> registrationDtoListofStudentNumber = registrations.stream()
                 .map(CourseRegistrationResponseDto::includeAllFieldFrom)

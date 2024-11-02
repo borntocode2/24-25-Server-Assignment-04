@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.gdgweek4assignmentktw.domain.Course;
 import org.example.gdgweek4assignmentktw.domain.Student;
 import org.example.gdgweek4assignmentktw.dto.courseRegistration.request.CourseRegistrationRequestDto;
+import org.example.gdgweek4assignmentktw.dto.courseRegistration.response.CourseRegistrationListResponseDto;
 import org.example.gdgweek4assignmentktw.dto.courseRegistration.response.CourseRegistrationResponseDto;
 import org.example.gdgweek4assignmentktw.repository.CourseRepository;
 import org.example.gdgweek4assignmentktw.repository.StudentRepository;
@@ -44,13 +45,13 @@ public class CourseRegistrationController {
 
     // 모든 수강신청 조회
     @GetMapping("/findAll")
-    public ResponseEntity<?> findAllRegistrations() {
+    public ResponseEntity<CourseRegistrationListResponseDto> findAllRegistrations() {
         return new ResponseEntity<>(courseRegistrationService.findAllRegistrations(), HttpStatus.OK);
     }
 
     // 학번으로 그 하생의 모든 수강신청 내역 조회
     @GetMapping("/findAll/{studentNumber}")
-    public ResponseEntity<?> findAllRegistrationsByStudnetNumber(@PathVariable Long studentNumber) {
+    public ResponseEntity<CourseRegistrationListResponseDto> findAllRegistrationsByStudnetNumber(@PathVariable Long studentNumber) {
         return new ResponseEntity<>(courseRegistrationService.findAllRegistrationsByStudentNumber(studentNumber),HttpStatus.OK);
     }
 

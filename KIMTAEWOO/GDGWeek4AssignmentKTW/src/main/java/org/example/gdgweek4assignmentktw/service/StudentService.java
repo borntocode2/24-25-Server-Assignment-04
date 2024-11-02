@@ -23,7 +23,7 @@ public class StudentService {
     @Transactional
     public StudentInfoResponseDto save(StudentSaveRequestDto dto) {
         if(studentRepository.existsByStudentNumber(dto.getStudentNumber())){
-            throw new StudentAlreadyExistsException("이미 존재하는 학번입니다.");
+            throw new StudentAlreadyExistsException("이미 존재하는 학번입니다. 다른 학번을 사용해주세요.");
         }
 
         Student saveStudent = dto.toEntity();
@@ -35,7 +35,7 @@ public class StudentService {
     @Transactional
     public StudentInfoResponseDto findByStudentId(Long studentId) {
         Student foundStudent = studentRepository.findById(studentId)
-                .orElseThrow( () -> new IllegalArgumentException("존재하지 않는 학생입니다"));
+                .orElseThrow( () -> new IllegalArgumentException("존재하지 않는 학생입니다."));
 
         return StudentInfoResponseDto.includeAllFieldFrom(foundStudent);
     }
@@ -43,10 +43,10 @@ public class StudentService {
     @Transactional
     public StudentInfoResponseDto updateByStudentId(Long studentId, StudentSaveRequestDto dto) {
         Student updateStudent = studentRepository.findById(studentId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다"));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다."));
 
         if(studentRepository.existsByStudentNumber(dto.getStudentNumber())){
-            throw new StudentAlreadyExistsException("이미 존재하는 학번입니다.");
+            throw new StudentAlreadyExistsException("이미 존재하는 학번입니다. 다른 학번을 사용해주세요.");
         }
 
         updateStudent.update(dto);
@@ -57,7 +57,7 @@ public class StudentService {
     @Transactional
     public void deleteByStudentId(Long studentId) {
         if(!studentRepository.existsById(studentId)) {
-            throw new StudentNotExistsException("존재하지 않는 학생입니다");
+            throw new StudentNotExistsException("존재하지 않는 학생입니다.");
         }
         studentRepository.deleteById(studentId);
     }
