@@ -19,7 +19,7 @@ public class CourseController {
     // 강의 저장
     @PostMapping
     public ResponseEntity<CourseInfoResponseDto> saveCourse(@RequestBody CourseSaveRequestDto dto) {
-        return new ResponseEntity(courseService.save(dto), HttpStatus.CREATED);
+        return new ResponseEntity<>(courseService.save(dto), HttpStatus.CREATED);
     }
 
     // courseId 로 강의 조회

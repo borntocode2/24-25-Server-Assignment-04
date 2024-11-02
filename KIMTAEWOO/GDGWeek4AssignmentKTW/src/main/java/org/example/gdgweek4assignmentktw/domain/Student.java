@@ -2,6 +2,7 @@ package org.example.gdgweek4assignmentktw.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,8 @@ import java.util.List;
     (프록시 객체는 일단 빈 객체로 생성되었다가 바꿔치기되는 것이 아니라, 비어있는 프록시 객체에 계속 정보가 주입된다)
  */
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Student {
 
     @Id
@@ -54,19 +57,7 @@ public class Student {
      */
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY
             , cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Course> courses = new ArrayList<>();
-
-    @Builder
-    public Student(Long studentId, Long studentNumber, String studentFaculty, String studentName, String studentName1,
-                   Date studentBirthday, String studentPhonenumber, List<Course> courses){
-        this.studentId = studentId;
-        this.studentNumber = studentNumber;
-        this.studentFaculty = studentFaculty;
-        this.studentName = studentName;
-        this.studentBirthday = studentBirthday;
-        this.studentPhonenumber = studentPhonenumber;
-        this.courses = courses;
-    }
+    private List<CourseRegistration> registrations = new ArrayList<>();
 
     public void update(StudentSaveRequestDto dto) {
         this.studentNumber = dto.getStudentNumber();

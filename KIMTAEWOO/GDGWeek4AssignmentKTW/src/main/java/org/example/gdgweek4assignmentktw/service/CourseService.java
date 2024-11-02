@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.gdgweek4assignmentktw.domain.Course;
 import org.example.gdgweek4assignmentktw.dto.course.response.CourseListResponseDto;
 import org.example.gdgweek4assignmentktw.exception.CourseAlreadyExistsException;
+import org.example.gdgweek4assignmentktw.exception.StudentNotExistsException;
 import org.example.gdgweek4assignmentktw.repository.CourseRepository;
 import org.example.gdgweek4assignmentktw.dto.course.request.CourseSaveRequestDto;
 import org.example.gdgweek4assignmentktw.dto.course.response.CourseInfoResponseDto;
@@ -54,6 +55,9 @@ public class CourseService {
 
     @Transactional
     public void deleteByCourseId(Long courseId) {
+        if(!courseRepository.existsById(courseId)) {
+            throw new StudentNotExistsException("존재하지 않는 과목입니다");
+        }
         courseRepository.deleteById(courseId);
     }
 

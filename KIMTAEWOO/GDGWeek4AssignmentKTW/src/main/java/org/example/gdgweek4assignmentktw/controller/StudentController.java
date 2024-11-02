@@ -35,7 +35,6 @@ public class StudentController {
         return new ResponseEntity<>(studentService.updateByStudentId(studentId, dto), HttpStatus.OK);
     }
 
-
     // studentId로 학생 삭제
     @DeleteMapping("{studentId}")
     public ResponseEntity<String> deleteByStudentId(@PathVariable Long studentId) {
