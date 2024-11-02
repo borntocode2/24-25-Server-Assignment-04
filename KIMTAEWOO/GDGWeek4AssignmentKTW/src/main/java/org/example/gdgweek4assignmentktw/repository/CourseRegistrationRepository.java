@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CourseRegistrationRepository extends JpaRepository<CourseRegistration,Long> {
-    List<CourseRegistration> findByStudentId(long studentId);
+    List<CourseRegistration> findByStudent_StudentId(long studentId);
 }

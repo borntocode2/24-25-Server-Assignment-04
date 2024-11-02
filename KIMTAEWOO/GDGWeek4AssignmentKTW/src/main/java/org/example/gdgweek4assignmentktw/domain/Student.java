@@ -50,7 +50,7 @@ public class Student {
     cascade : 부모 엔티티 상태 변화시 자식 엔티티 어떻게 할지 설정
     orphanRemoval : 고아 엔티티 삭제 여부
      */
-    @OneToMany(mappedBy = "lecture", fetch = FetchType.LAZY
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY
             , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Course> courses = new ArrayList<>();
 

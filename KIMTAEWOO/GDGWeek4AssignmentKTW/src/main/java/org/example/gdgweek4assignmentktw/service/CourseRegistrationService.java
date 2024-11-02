@@ -55,7 +55,7 @@ public class CourseRegistrationService {
 
     //studentId 로 수강신청 목록 조회
     public List<CourseRegistrationResponseDto> getAllCourseRegistrations(Long studentId) {
-        List<CourseRegistration> registrations = courseRegistrationRepository.findByStudentId(studentId);
+        List<CourseRegistration> registrations = courseRegistrationRepository.findByStudent_StudentId(studentId);
 
         if(registrations.isEmpty()) {
             System.out.println("수강신청 내역이 없습니다");
