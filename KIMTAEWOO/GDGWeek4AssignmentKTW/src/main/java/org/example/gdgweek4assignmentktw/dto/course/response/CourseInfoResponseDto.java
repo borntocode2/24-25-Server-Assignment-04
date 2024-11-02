@@ -4,8 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import org.example.gdgweek4assignmentktw.domain.Course;
 
-@Getter
 @Builder
+// Response 객체에 @Getter 가 없으면 Spriong이 JSON으로 데이터를 직렬화 할 때, 필요한 Getter 메서드를 찾지 못해 406 Not Acceptable 오류가 발생할 수 있다.
+@Getter
 public class CourseInfoResponseDto {
     private Long courseId;
     private Long courseNumber;
@@ -25,4 +26,5 @@ public class CourseInfoResponseDto {
                 .courseProfessor(course.getCourseProfessor())
                 .build();
     }
+
 }

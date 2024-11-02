@@ -22,7 +22,7 @@ public class CourseRegistrationController {
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
 
-    // 수강 신청 시도
+    // 수강신청 등록
     @PostMapping
     public ResponseEntity<CourseRegistrationResponseDto> doRegistration(@RequestBody CourseRegistrationRequestDto dto) {
         CourseRegistrationResponseDto responseDto = courseRegistrationService.doRegistration(dto);
@@ -35,6 +35,12 @@ public class CourseRegistrationController {
         return new ResponseEntity<>(courseRegistrationService.checkByCourseRegistrationId(courseRegistrationId),HttpStatus.OK);
     }
 
+    // 전체 수강신청 조회
+    @GetMapping("/findAll")
+    public ResponseEntity<CourseRegistrationListResponseDto> findAllRegistrations() {
+        return new ResponseEntity<>(courseRegistrationService.findAllRegistrations(), HttpStatus.OK);
+    }
+
     // 수강신청 취소
     @DeleteMapping("/{courseRegistrationId}")
     public ResponseEntity<String> cancelRegistration(@PathVariable Long courseRegistrationId) {
@@ -43,13 +49,7 @@ public class CourseRegistrationController {
         return new ResponseEntity<>(cancelResponseMessage,HttpStatus.OK);
     }
 
-    // 모든 수강신청 조회
-    @GetMapping("/findAll")
-    public ResponseEntity<CourseRegistrationListResponseDto> findAllRegistrations() {
-        return new ResponseEntity<>(courseRegistrationService.findAllRegistrations(), HttpStatus.OK);
-    }
-
-    // 학번으로 그 하생의 모든 수강신청 내역 조회
+    // 학번을 통해 해당 학생의 수강신청 내역 조회
     @GetMapping("/findAll/{studentNumber}")
     public ResponseEntity<CourseRegistrationListResponseDto> findAllRegistrationsByStudnetNumber(@PathVariable Long studentNumber) {
         return new ResponseEntity<>(courseRegistrationService.findAllRegistrationsByStudentNumber(studentNumber),HttpStatus.OK);

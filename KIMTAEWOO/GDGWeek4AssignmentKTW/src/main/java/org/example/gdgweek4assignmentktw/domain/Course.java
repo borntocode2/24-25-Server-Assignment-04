@@ -60,4 +60,5 @@ public class Course {
         this.courseTime = dto.getCourseTime();
         this.courseProfessor = dto.getCourseProfessor();
     }
+
 }

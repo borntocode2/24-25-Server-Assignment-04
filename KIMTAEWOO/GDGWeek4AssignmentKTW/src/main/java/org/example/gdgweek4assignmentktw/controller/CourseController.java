@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
     private final CourseService courseService;
 
-    // 강의 저장
+    // 강의 생성
     @PostMapping
     public ResponseEntity<CourseInfoResponseDto> saveCourse(@RequestBody CourseSaveRequestDto dto) {
         return new ResponseEntity<>(courseService.save(dto), HttpStatus.CREATED);
@@ -28,7 +28,13 @@ public class CourseController {
         return new ResponseEntity<>(courseService.findByCourseId(courseId), HttpStatus.OK);
     }
 
-    // courseId 로 강의 정보 업데이트
+    // 전체 강의 조회
+    @GetMapping
+    public ResponseEntity<CourseListResponseDto> findAllCourses() {
+        return new ResponseEntity<>(courseService.findAllCourses(), HttpStatus.OK);
+    }
+
+    // courseId 로 강의 수정
     @PatchMapping("/{courseId}")
     public ResponseEntity<CourseInfoResponseDto> updateByCourseId(@PathVariable Long courseId
             , @RequestBody CourseSaveRequestDto dto) {
@@ -42,10 +48,5 @@ public class CourseController {
         String deleteResponseMessage = courseId + "번 강의가 성공적으로 삭제되었습니다.";
         return new ResponseEntity<>(deleteResponseMessage, HttpStatus.OK);
     }
-
-    @GetMapping
-    public ResponseEntity<CourseListResponseDto> findAllCourses() {
-        return new ResponseEntity<>(courseService.findAllCourses(), HttpStatus.OK);
-    }
-
+    
 }

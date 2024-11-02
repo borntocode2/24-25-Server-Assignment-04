@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor // @RequiredArgsConstructor으로 생성자 주입
 public class CourseRegistrationService {
     private final CourseRegistrationRepository courseRegistrationRepository;
     private final CourseRepository courseRepository;

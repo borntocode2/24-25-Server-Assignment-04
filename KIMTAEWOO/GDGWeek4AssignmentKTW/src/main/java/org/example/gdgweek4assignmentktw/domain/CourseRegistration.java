@@ -37,12 +37,12 @@ public class CourseRegistration {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    // Hibernate 제공 어노테이션, 엔티티가 처음 생서되어 DB에 저장될 때 필드에 현재 시간 설정
+    @Column(name = "registration_time")
+    // @CreationTimestamp: Hibernate 제공 어노테이션, 엔티티가 처음 생서되어 DB에 저장될 때 필드에 현재 시간 자동 설정
     @CreationTimestamp
     // Timestamp 를 통해 제공되는 시간 형식이 복잡하여 직관적인 형식으로 변경
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registrationTime;
-    
 
     // 정적 팩토리 메서드
     public static CourseRegistration createWithCourseAndStudent(Course course, Student student) {

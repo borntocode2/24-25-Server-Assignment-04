@@ -9,8 +9,8 @@ import org.example.gdgweek4assignmentktw.domain.Student;
 
 import java.time.LocalDateTime;
 
-@Getter
 @Builder
+@Getter
 public class CourseRegistrationResponseDto {
     private Long courseRegistrationId;
     private Long courseId;

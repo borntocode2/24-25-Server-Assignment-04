@@ -14,6 +14,5 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CourseRegistrationRequestDto {
     private Long courseId;
-
     private Long studentId;
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     private final StudentService studentService;
 
-    //학생 저장
+    //학생 생성
     @PostMapping
     public ResponseEntity<StudentInfoResponseDto> saveStudent(@RequestBody StudentSaveRequestDto dto) {
         return new ResponseEntity<>(studentService.save(dto), HttpStatus.OK);
@@ -28,7 +28,13 @@ public class StudentController {
         return new ResponseEntity<>(studentService.findByStudentId(studentId), HttpStatus.OK);
     }
 
-    // studentId로 학생 정보 업데이트
+    // 전체 학생 조회
+    @GetMapping
+    public ResponseEntity<StudentListResponseDto> findAllStudents() {
+        return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
+    }
+
+    // studentId로 학생 정보 수정
     @PatchMapping("/{studentId}")
     public ResponseEntity<StudentInfoResponseDto> updateByStudentId(@PathVariable Long studentId
             ,@RequestBody StudentSaveRequestDto dto) {
@@ -43,9 +49,4 @@ public class StudentController {
         return new ResponseEntity<>(deleteResponseMessage, HttpStatus.OK);
     }
 
-    // 모든 학생 조회
-    @GetMapping
-    public ResponseEntity<StudentListResponseDto> findAllStudents() {
-        return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
-    }
 }

@@ -8,9 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
-
-@Getter
 @Builder
+@Getter
 public class CourseRegistrationListResponseDto {
     List<CourseRegistrationResponseDto> registrationDTOS;
 
@@ -25,4 +24,5 @@ public class CourseRegistrationListResponseDto {
                 .registrationDTOS(Collections.emptyList())
                 .build();
     }
+
 }

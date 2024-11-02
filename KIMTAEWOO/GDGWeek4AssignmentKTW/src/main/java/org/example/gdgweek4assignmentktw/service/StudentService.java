@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-// @RequiredArgsConstructor으로 생성자 주입
 @RequiredArgsConstructor
 public class StudentService {
     private final StudentRepository studentRepository;
@@ -72,4 +71,5 @@ public class StudentService {
 
         return StudentListResponseDto.changeListToDto(studentDtoList);
     }
+
 }

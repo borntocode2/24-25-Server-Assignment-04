@@ -7,8 +7,9 @@ import org.example.gdgweek4assignmentktw.domain.Student;
 
 import java.util.Date;
 
-@Getter
+
 @Builder
+@Getter
 public class StudentInfoResponseDto {
     private Long studentId;
     private Long studentNumber;
@@ -29,4 +30,5 @@ public class StudentInfoResponseDto {
                 .studentPhonenumber(student.getStudentPhonenumber())
                 .build();
     }
+
 }

@@ -15,4 +15,5 @@ public class CourseListResponseDto {
                 .courseInfoResponseDTOs(dtoList)
                 .build();
     }
+
 }

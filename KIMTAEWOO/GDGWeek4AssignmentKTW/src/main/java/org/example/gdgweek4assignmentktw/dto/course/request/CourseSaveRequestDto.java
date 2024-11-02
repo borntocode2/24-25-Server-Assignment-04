@@ -24,4 +24,5 @@ public class CourseSaveRequestDto {
                 .courseProfessor(this.courseProfessor)
                 .build();
     }
+
 }

@@ -47,4 +47,5 @@ public class ExceptionController {
     public ResponseEntity<String> handleGeneralException(Exception ex) {
         return new ResponseEntity<>("서버에서 오류가 발생했습니다. 잠시 후 다시 시도해주세요.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 }

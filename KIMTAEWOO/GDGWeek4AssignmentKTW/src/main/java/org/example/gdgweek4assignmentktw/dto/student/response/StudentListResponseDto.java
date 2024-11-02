@@ -16,4 +16,5 @@ public class StudentListResponseDto {
                 .studentInfoResponseDTOs(dtoList)
                 .build();
     }
+
 }

@@ -32,10 +32,9 @@ public class Student {
 
     @Column(name = "student_number")
     private Long studentNumber; // 201814075
-
-    // 학부
+    
     @Column(name = "student_faculty")
-    private String studentFaculty;
+    private String studentFaculty; // IT융합자율학부
 
     @Column(name = "student_name")
     private String studentName; // 김태우
@@ -66,4 +65,5 @@ public class Student {
         this.studentBirthday = dto.getStudentBirthday();
         this.studentPhonenumber = dto.getStudentPhonenumber();
     }
+
 }

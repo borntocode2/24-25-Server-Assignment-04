@@ -16,7 +16,6 @@ public class StudentSaveRequestDto {
     private Long studentNumber;
     private String studentFaculty;
     private String studentName;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date studentBirthday;
     private String studentPhonenumber;
@@ -31,4 +30,5 @@ public class StudentSaveRequestDto {
                 .studentPhonenumber(this.studentPhonenumber)
                 .build();
     }
+
 }
