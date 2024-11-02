@@ -20,20 +20,20 @@ public class StudentController {
         return new ResponseEntity<>(studentService.save(studentSaveRequestDto), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{studentNumber}")
-    public ResponseEntity<StudentInfoResponseDto> updateByStudentNumber(@PathVariable(name = "studentNumber") Long studentNumbeber,
+    @PatchMapping("/{studentId}")
+    public ResponseEntity<StudentInfoResponseDto> updateByStudentId(@PathVariable(name = "studentId") Long studentId,
                                                                         @RequestBody StudentSaveRequestDto studentSaveRequestDto) {
-        return new ResponseEntity<>(studentService.updateByStudentNumber(studentNumbeber, studentSaveRequestDto), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.updateByStudentId(studentId, studentSaveRequestDto), HttpStatus.OK);
     }
 
-    @GetMapping("/{studentNumber}")
-    public ResponseEntity<StudentInfoResponseDto> getByStudentNumber(@PathVariable(name = "studentNumber") Long studentNumber) {
-        return new ResponseEntity<>(studentService.getStudentByStudentNumber(studentNumber), HttpStatus.OK);
+    @GetMapping("/{studentId}")
+    public ResponseEntity<StudentInfoResponseDto> getByStudentId(@PathVariable(name = "studentId") Long studentId) {
+        return new ResponseEntity<>(studentService.getStudentByStudentId(studentId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{studentNumber}")
-    public ResponseEntity<Void> deleteByStudentNumber(@PathVariable(name = "studentNumber") Long studentNumber) {
-        studentService.deleteByStudentNumber(studentNumber);
+    @DeleteMapping("/{studentId}")
+    public ResponseEntity<Void> deleteByStudentId(@PathVariable(name = "studentId") Long studentId) {
+        studentService.deleteByStudentId(studentId);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

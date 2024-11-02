@@ -8,12 +8,14 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class RegisteredStudentForLectureDto {
+public class LectureRegisteredStudentForLectureDto {
+    private Long id;
     private Long studentNumber;
     private String name;
 
-    public static RegisteredStudentForLectureDto from(Student student) {
-        return RegisteredStudentForLectureDto.builder()
+    public static LectureRegisteredStudentForLectureDto from(Student student) {
+        return LectureRegisteredStudentForLectureDto.builder()
+                .id(student.getId())
                 .studentNumber(student.getStudentNumber())
                 .name(student.getName())
                 .build();

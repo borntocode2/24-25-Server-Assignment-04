@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LectureSaveRequestDto {
     private String title;
-    private Long grade;
+    private Long credit;
     private String content;
 }

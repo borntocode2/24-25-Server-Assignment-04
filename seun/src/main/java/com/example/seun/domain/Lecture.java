@@ -19,29 +19,23 @@ public class Lecture {
 
     private String title;
 
-    private Long grade;
+    private Long credit;
 
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "studentNumber")
-    private Student student;
-
     @OneToMany(mappedBy = "lecture", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CourseRegistration> courseRegistrations = new ArrayList<>();
+    private List<LectureRegistration> lectureRegistrations = new ArrayList<>();
 
     @Builder
-    public Lecture(Long id, String title, Long grade, String content, Student student) {
-        this.id = id;
+    public Lecture(String title, Long credit, String content) {
         this.title = title;
-        this.grade = grade;
+        this.credit = credit;
         this.content = content;
-        this.student = student;
     }
 
-    public void update(String title, Long grade, String content) {
+    public void update(String title, Long credit, String content) {
         this.title = title;
-        this.grade = grade;
+        this.credit = credit;
         this.content = content;
     }
 }

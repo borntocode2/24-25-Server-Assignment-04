@@ -8,17 +8,17 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class CourseRegisteredLectureForStudentDto {
+public class LectureRegisteredLectureForStudentDto {
     private Long id;
     private String title;
-    private Long grade;
+    private Long credit;
     private String content;
 
-    public static CourseRegisteredLectureForStudentDto from(Lecture lecture){
-        return CourseRegisteredLectureForStudentDto.builder()
+    public static LectureRegisteredLectureForStudentDto from(Lecture lecture){
+        return LectureRegisteredLectureForStudentDto.builder()
                 .id(lecture.getId())
                 .title(lecture.getTitle())
-                .grade(lecture.getGrade())
+                .credit(lecture.getCredit())
                 .content(lecture.getContent())
                 .build();
     }

@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentSaveRequestDto {
+    private Long studentNumber;
     private String name;
 
     public Student toEntity() {
         return Student.builder()
+                .studentNumber(studentNumber)
                 .name(name)
                 .build();
     }

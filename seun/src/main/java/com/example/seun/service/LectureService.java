@@ -20,7 +20,7 @@ public class LectureService {
     public LectureInfoResponseDto save(LectureSaveRequestDto lectureSaveRequestDto) {
         Lecture lecture = Lecture.builder()
                 .title(lectureSaveRequestDto.getTitle())
-                .grade(lectureSaveRequestDto.getGrade())
+                .credit(lectureSaveRequestDto.getCredit())
                 .content(lectureSaveRequestDto.getContent())
                 .build();
         lectureRepository.save(lecture);
@@ -41,7 +41,7 @@ public class LectureService {
         Lecture lecture = lectureRepository.findById(lectureId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강의입니다."));
 
-        lecture.update(lectureSaveRequestDto.getTitle(), lectureSaveRequestDto.getGrade(), lectureSaveRequestDto.getContent());
+        lecture.update(lectureSaveRequestDto.getTitle(), lectureSaveRequestDto.getCredit(), lectureSaveRequestDto.getContent());
 
         return LectureInfoResponseDto.from(lecture);
     }

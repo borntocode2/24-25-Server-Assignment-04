@@ -11,14 +11,14 @@ import lombok.Getter;
 public class LectureInfoResponseDto {
     private Long id;
     private String title;
-    private Long grade;
+    private Long credit;
     private String content;
 
     public static LectureInfoResponseDto from(Lecture lecture) {
         return LectureInfoResponseDto.builder()
                 .id(lecture.getId())
                 .title(lecture.getTitle())
-                .grade(lecture.getGrade())
+                .credit(lecture.getCredit())
                 .content(lecture.getContent())
                 .build();
     }

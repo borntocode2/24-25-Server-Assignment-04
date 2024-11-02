@@ -25,26 +25,26 @@ public class StudentService {
     }
 
     @Transactional
-    public StudentInfoResponseDto updateByStudentNumber(Long studentNumber, StudentSaveRequestDto studentSaveRequestDto) {
-        Student student = studentRepository.findById(studentNumber)
+    public StudentInfoResponseDto updateByStudentId(Long studentId, StudentSaveRequestDto studentSaveRequestDto) {
+        Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다."));
 
-        student.update(studentSaveRequestDto.getName());
+        student.update(studentSaveRequestDto.getStudentNumber(), studentSaveRequestDto.getName());
 
         return StudentInfoResponseDto.from(student);
     }
 
     @Transactional
-    public StudentInfoResponseDto getStudentByStudentNumber(Long studentNumber) {
-        Student student = studentRepository.findById(studentNumber)
+    public StudentInfoResponseDto getStudentByStudentId(Long studentId) {
+        Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다."));
 
         return StudentInfoResponseDto.from(student);
     }
 
     @Transactional
-    public void deleteByStudentNumber(Long studentNumber) {
-        studentRepository.deleteById(studentNumber);
+    public void deleteByStudentId(Long studentId) {
+        studentRepository.deleteById(studentId);
     }
 
     @Transactional(readOnly = true)

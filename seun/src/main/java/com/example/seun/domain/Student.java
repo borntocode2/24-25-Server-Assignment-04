@@ -15,12 +15,14 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Long studentNumber;
 
     private String name;
 
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CourseRegistration> courseRegistrations = new ArrayList<>();
+    private List<LectureRegistration> lectureRegistrations = new ArrayList<>();
 
     @Builder
     public Student(Long studentNumber, String name) {
@@ -28,7 +30,8 @@ public class Student {
         this.name = name;
     }
 
-    public void update(String name){
+    public void update(Long studentNumber, String name){
+        this.studentNumber = studentNumber;
         this.name = name;
     }
 
