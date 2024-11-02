@@ -1,5 +1,6 @@
 package org.example.gdgweek4assignmentktw.dto.student.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ public class StudentSaveRequestDto {
     private Long studentNumber;
     private String studentFaculty;
     private String studentName;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date studentBirthday;
     private String studentPhonenumber;
 

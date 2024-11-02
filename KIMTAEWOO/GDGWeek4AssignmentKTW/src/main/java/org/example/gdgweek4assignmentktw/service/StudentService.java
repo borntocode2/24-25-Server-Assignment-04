@@ -7,6 +7,7 @@ import org.example.gdgweek4assignmentktw.dto.student.request.StudentSaveRequestD
 import org.example.gdgweek4assignmentktw.dto.student.response.StudentInfoResponseDto;
 import org.example.gdgweek4assignmentktw.dto.student.response.StudentListResponseDto;
 import org.example.gdgweek4assignmentktw.exception.StudentAlreadyExistsException;
+import org.example.gdgweek4assignmentktw.exception.StudentNotExistsException;
 import org.example.gdgweek4assignmentktw.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +49,6 @@ public class StudentService {
             throw new StudentAlreadyExistsException("이미 존재하는 학번입니다.");
         }
 
-
         updateStudent.update(dto);
 
         return StudentInfoResponseDto.includeAllFieldFrom(updateStudent);
@@ -56,6 +56,9 @@ public class StudentService {
 
     @Transactional
     public void deleteByStudentId(Long studentId) {
+        if(!studentRepository.existsById(studentId)) {
+            throw new StudentNotExistsException("존재하지 않는 학생입니다");
+        }
         studentRepository.deleteById(studentId);
     }
 

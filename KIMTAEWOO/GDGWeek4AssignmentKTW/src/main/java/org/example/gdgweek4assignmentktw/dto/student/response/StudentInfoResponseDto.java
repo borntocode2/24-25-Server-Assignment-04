@@ -1,5 +1,6 @@
 package org.example.gdgweek4assignmentktw.dto.student.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import org.example.gdgweek4assignmentktw.domain.Student;
@@ -13,6 +14,7 @@ public class StudentInfoResponseDto {
     private Long studentNumber;
     private String studentFaculty;
     private String studentName;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date studentBirthday;
     private String studentPhonenumber;
 

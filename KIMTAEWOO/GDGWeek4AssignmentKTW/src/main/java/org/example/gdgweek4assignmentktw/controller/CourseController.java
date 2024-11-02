@@ -31,7 +31,7 @@ public class CourseController {
     // courseId 로 강의 정보 업데이트
     @PatchMapping("/{courseId}")
     public ResponseEntity<CourseInfoResponseDto> updateByCourseId(@PathVariable Long courseId
-            , @RequestBody CourseSaveRequestDto dto ) {
+            , @RequestBody CourseSaveRequestDto dto) {
         return new ResponseEntity<>(courseService.updateByCourseId(courseId, dto), HttpStatus.OK);
     }
 

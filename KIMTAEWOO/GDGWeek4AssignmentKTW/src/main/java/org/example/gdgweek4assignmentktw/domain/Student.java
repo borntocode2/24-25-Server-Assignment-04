@@ -1,5 +1,6 @@
 package org.example.gdgweek4assignmentktw.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,6 +38,7 @@ public class Student {
     private String studentName; // 김태우
 
     @Column(name = "student_birthday")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date studentBirthday; // 1999-12-12
 
     @Column(name = "student_phonenumber")
@@ -60,18 +62,17 @@ public class Student {
         this.studentId = studentId;
         this.studentNumber = studentNumber;
         this.studentFaculty = studentFaculty;
-        this.studentName = studentName1;
+        this.studentName = studentName;
         this.studentBirthday = studentBirthday;
         this.studentPhonenumber = studentPhonenumber;
         this.courses = courses;
     }
 
     public void update(StudentSaveRequestDto dto) {
-        this.studentNumber = studentNumber;
-        this.studentFaculty = studentFaculty;
-        this.studentName = studentName;
-        this.studentBirthday = studentBirthday;
-        this.studentPhonenumber = studentPhonenumber;
-        this.courses = courses;
+        this.studentNumber = dto.getStudentNumber();
+        this.studentFaculty = dto.getStudentFaculty();
+        this.studentName = dto.getStudentName();
+        this.studentBirthday = dto.getStudentBirthday();
+        this.studentPhonenumber = dto.getStudentPhonenumber();
     }
 }

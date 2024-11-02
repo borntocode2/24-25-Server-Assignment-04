@@ -7,6 +7,7 @@ import org.example.gdgweek4assignmentktw.domain.Student;
 import java.util.List;
 
 @Builder
+@Getter
 public class StudentListResponseDto {
     List<StudentInfoResponseDto> studentInfoResponseDTOs;
 
