@@ -1,4 +1,4 @@
-package org.example.gdgweek4assignmentktw.controller;
+package org.example.gdgweek4assignmentktw.exception;
 
 import org.example.gdgweek4assignmentktw.exception.CourseAlreadyExistsException;
 import org.example.gdgweek4assignmentktw.exception.CourseNotExistsException;
