@@ -10,7 +10,7 @@ import com.example.seun.dto.LectureRegisteredStudentsResponseDto;
 import com.example.seun.repository.LectureRegistrationRepository;
 import com.example.seun.repository.LectureRepository;
 import com.example.seun.repository.StudentRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +40,7 @@ public class LectureRegistrationService {
         lectureRegistrationRepository.save(lectureRegistration);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public LectureRegisteredStudentsResponseDto getStudentsByLecture(Long lectureId) {
         List<LectureRegisteredStudentForLectureDto> students = lectureRegistrationRepository.findByLectureId(lectureId).stream()
                 .map(LectureRegistration::getStudent)
@@ -49,7 +49,7 @@ public class LectureRegistrationService {
         return new LectureRegisteredStudentsResponseDto(students);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public LectureRegisteredLecturesResponseDto getLecturesByStudent(Long studentId) {
         List<LectureRegisteredLectureForStudentDto> lectures = lectureRegistrationRepository.findByStudent_Id(studentId).stream()
                 .map(LectureRegistration::getLecture)
