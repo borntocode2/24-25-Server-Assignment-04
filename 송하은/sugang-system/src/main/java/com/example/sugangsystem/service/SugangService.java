@@ -3,10 +3,10 @@ package com.example.sugangsystem.service;
 import com.example.sugangsystem.domain.Course;
 import com.example.sugangsystem.domain.Student;
 import com.example.sugangsystem.domain.Sugang;
-import com.example.sugangsystem.dto.request.sugang.RegisterSugangRequestDto;
-import com.example.sugangsystem.dto.response.sugang.GetCountByCourseResponseDto;
-import com.example.sugangsystem.dto.response.sugang.GetSugangByStudentIdResponseDto;
-import com.example.sugangsystem.dto.response.sugang.RegisterSugangResponseDto;
+import com.example.sugangsystem.dto.request.sugang.SugangRegisterRequestDto;
+import com.example.sugangsystem.dto.response.sugang.SugangCourseCountResponseDto;
+import com.example.sugangsystem.dto.response.sugang.SugangInfoResponseDto;
+import com.example.sugangsystem.dto.response.sugang.SugangRegisterResponseDto;
 import com.example.sugangsystem.repository.CourseRepository;
 import com.example.sugangsystem.repository.StudentRepository;
 import com.example.sugangsystem.repository.SugangRepository;
@@ -27,11 +27,11 @@ public class SugangService {
 
     // 학생이 강의를 수강신청
     @Transactional
-    public RegisterSugangResponseDto register(RegisterSugangRequestDto registerSugangRequestDto) {
+    public SugangRegisterResponseDto registerSugang(SugangRegisterRequestDto sugangRegisterRequestDto) {
        // 각각의 ID를 통해 Student 와 Course 정보를 먼저 받아온다.
-        Student student = studentRepository.findById(registerSugangRequestDto.getStudentId())
+        Student student = studentRepository.findById(sugangRegisterRequestDto.getStudentId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다."));
-        Course course = courseRepository.findById(registerSugangRequestDto.getCourseId())
+        Course course = courseRepository.findById(sugangRegisterRequestDto.getCourseId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강의입니다."));
 
         // 중복 수강신청 여부 체크
@@ -42,16 +42,16 @@ public class SugangService {
         Sugang sugang = Sugang.createSugang(student,course);
         sugangRepository.save(sugang);
 
-        return RegisterSugangResponseDto.from(sugang);
+        return SugangRegisterResponseDto.from(sugang);
     }
 
     // 학생 id 로 해당 수강신청 목록 조회
     @Transactional(readOnly = true)
-    public List<GetSugangByStudentIdResponseDto> getSugangListByStudentId(Long studentId) {
+    public List<SugangInfoResponseDto> getSugangListByStudentId(Long studentId) {
         List<Sugang> sugangList = sugangRepository.findByStudent_Id(studentId);
 
         return sugangList.stream()
-                .map(GetSugangByStudentIdResponseDto::from)
+                .map(SugangInfoResponseDto::from)
                 .toList();
     }
 
@@ -65,11 +65,11 @@ public class SugangService {
 
     // 추가 기능 - 강의별로 수강신청 인원 구하기 (통계)
     @Transactional(readOnly = true)
-    public List<GetCountByCourseResponseDto> getCountByCourse() {
+    public List<SugangCourseCountResponseDto> getCountByCourse() {
         List<Map<String,Object>> statistics = sugangRepository.countSugangsByCourse();
 
         return statistics.stream()
-                .map(GetCountByCourseResponseDto::from)
+                .map(SugangCourseCountResponseDto::from)
                 .toList();
     }
 }

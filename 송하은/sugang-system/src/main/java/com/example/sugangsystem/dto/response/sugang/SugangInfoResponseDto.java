@@ -8,22 +8,21 @@ import java.util.Date;
 
 @Getter
 @Builder
-public class RegisterSugangResponseDto {
+public class SugangInfoResponseDto {
 
-    private Long id;
-
-    private Long studentId;
+    private Long sugangId;
     private Long courseId;
+    private String courseTitle;
     private Date date;
 
     // entity -> dto
-    public static RegisterSugangResponseDto from(Sugang sugang) {
-        return RegisterSugangResponseDto.builder()
-                .id(sugang.getId())
-                .studentId(sugang.getStudent().getId())
+    public static SugangInfoResponseDto from(Sugang sugang) {
+        return SugangInfoResponseDto.builder()
+                .sugangId(sugang.getId())
                 .courseId(sugang.getCourse().getId())
+                .courseTitle(sugang.getCourse().getTitle())
                 .date(sugang.getDate())
                 .build();
-
     }
+
 }

@@ -18,7 +18,7 @@ public class StudentController {
     private final StudentService studentService;
 
     // 학생 생성
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<StudentInfoResponseDto> createStudent(@RequestBody StudentSaveRequestDto studentSaveRequestDto) {
         return new ResponseEntity<>(studentService.save(studentSaveRequestDto), HttpStatus.CREATED);
     }
