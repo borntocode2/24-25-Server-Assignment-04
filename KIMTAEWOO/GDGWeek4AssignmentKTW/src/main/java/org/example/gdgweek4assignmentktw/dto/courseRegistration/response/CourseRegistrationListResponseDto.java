@@ -1,13 +1,10 @@
 package org.example.gdgweek4assignmentktw.dto.courseRegistration.response;
 
-
 import lombok.Builder;
 import lombok.Getter;
-
 import java.util.Collections;
 import java.util.List;
 
-import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
 @Builder
 @Getter
 public class CourseRegistrationListResponseDto {

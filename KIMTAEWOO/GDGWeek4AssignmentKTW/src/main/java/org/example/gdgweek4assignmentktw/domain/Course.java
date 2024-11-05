@@ -1,15 +1,15 @@
 package org.example.gdgweek4assignmentktw.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.gdgweek4assignmentktw.dto.course.request.CourseSaveRequestDto;
 
-
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Course {
 
     @Id

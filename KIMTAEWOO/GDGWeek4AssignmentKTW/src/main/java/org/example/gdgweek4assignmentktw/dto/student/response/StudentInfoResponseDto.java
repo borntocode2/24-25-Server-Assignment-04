@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import org.example.gdgweek4assignmentktw.domain.Student;
-
 import java.util.Date;
-
 
 @Builder
 @Getter

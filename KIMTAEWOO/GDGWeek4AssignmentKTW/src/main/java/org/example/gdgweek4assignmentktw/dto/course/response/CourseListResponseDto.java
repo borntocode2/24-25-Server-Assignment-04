@@ -2,7 +2,6 @@ package org.example.gdgweek4assignmentktw.dto.course.response;
 
 import lombok.Builder;
 import lombok.Getter;
-
 import java.util.List;
 
 @Builder

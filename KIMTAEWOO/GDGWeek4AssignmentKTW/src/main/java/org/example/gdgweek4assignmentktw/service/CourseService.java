@@ -54,11 +54,12 @@ public class CourseService {
     }
 
     @Transactional
-    public void deleteByCourseId(Long courseId) {
+    public String deleteByCourseId(Long courseId) {
         if(!courseRepository.existsById(courseId)) {
             throw new StudentNotExistsException("존재하지 않는 과목입니다.");
         }
         courseRepository.deleteById(courseId);
+        return courseId + "번 강의가 성공적으로 삭제되었습니다.";
     }
 
     @Transactional(readOnly = true)

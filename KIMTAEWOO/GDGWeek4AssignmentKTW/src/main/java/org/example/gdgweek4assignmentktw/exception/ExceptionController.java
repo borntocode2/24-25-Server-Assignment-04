@@ -1,9 +1,5 @@
 package org.example.gdgweek4assignmentktw.exception;
 
-import org.example.gdgweek4assignmentktw.exception.CourseAlreadyExistsException;
-import org.example.gdgweek4assignmentktw.exception.CourseNotExistsException;
-import org.example.gdgweek4assignmentktw.exception.StudentAlreadyExistsException;
-import org.example.gdgweek4assignmentktw.exception.StudentNotExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -2,19 +2,17 @@ package org.example.gdgweek4assignmentktw.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.example.gdgweek4assignmentktw.dto.course.response.CourseInfoResponseDto;
-import org.example.gdgweek4assignmentktw.dto.courseRegistration.request.CourseRegistrationRequestDto;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@NoArgsConstructor
+/*
+JPA 엔티티 클래스에서 기본 생성자가 필요하지만, 외부에서 무분별하게 호출되지 않도록 제한할 때 사용.
+Lazy Loading의 프록시 객체 생성을 위해 private 이 아닌 protected 로 설정
+ */
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 /*
 클래스 레벨에서 Builder을 어노테이션을 붙이면
 모든 요소를 받는 package-private 생성자가 자동으로 생셩되며
@@ -44,7 +42,7 @@ public class CourseRegistration {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registrationTime;
 
-    // 정적 팩토리 메서드
+    // 기존의 정적 팩토리 메서드
     public static CourseRegistration createWithCourseAndStudent(Course course, Student student) {
         CourseRegistration courseRegistration = new CourseRegistration();
         courseRegistration.course = course;

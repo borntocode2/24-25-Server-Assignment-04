@@ -54,11 +54,12 @@ public class StudentService {
     }
 
     @Transactional
-    public void deleteByStudentId(Long studentId) {
+    public String deleteByStudentId(Long studentId) {
         if(!studentRepository.existsById(studentId)) {
             throw new StudentNotExistsException("존재하지 않는 학생입니다.");
         }
         studentRepository.deleteById(studentId);
+        return studentId + "번 학생이 성공적으로 삭제되었습니다";
     }
 
     @Transactional(readOnly = true)

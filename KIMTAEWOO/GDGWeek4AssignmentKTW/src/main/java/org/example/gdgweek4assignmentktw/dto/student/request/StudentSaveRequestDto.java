@@ -1,12 +1,10 @@
 package org.example.gdgweek4assignmentktw.dto.student.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.gdgweek4assignmentktw.domain.CourseRegistration;
 import org.example.gdgweek4assignmentktw.domain.Student;
-
 import java.util.Date;
 import java.util.List;
 

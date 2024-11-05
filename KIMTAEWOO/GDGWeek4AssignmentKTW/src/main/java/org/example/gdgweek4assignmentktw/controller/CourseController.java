@@ -19,34 +19,36 @@ public class CourseController {
     // 강의 생성
     @PostMapping
     public ResponseEntity<CourseInfoResponseDto> saveCourse(@RequestBody CourseSaveRequestDto dto) {
-        return new ResponseEntity<>(courseService.save(dto), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(courseService.save(dto));
     }
 
     // courseId 로 강의 조회
     @GetMapping("/{courseId}")
     public ResponseEntity<CourseInfoResponseDto> findByCourseId(@PathVariable Long courseId) {
-        return new ResponseEntity<>(courseService.findByCourseId(courseId), HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(courseService.findByCourseId(courseId));
     }
 
     // 전체 강의 조회
     @GetMapping
     public ResponseEntity<CourseListResponseDto> findAllCourses() {
-        return new ResponseEntity<>(courseService.findAllCourses(), HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(courseService.findAllCourses());
     }
 
     // courseId 로 강의 수정
     @PatchMapping("/{courseId}")
-    public ResponseEntity<CourseInfoResponseDto> updateByCourseId(@PathVariable Long courseId
-            , @RequestBody CourseSaveRequestDto dto) {
-        return new ResponseEntity<>(courseService.updateByCourseId(courseId, dto), HttpStatus.OK);
+    public ResponseEntity<CourseInfoResponseDto> updateByCourseId(@PathVariable Long courseId, @RequestBody CourseSaveRequestDto dto) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(courseService.updateByCourseId(courseId, dto));
     }
 
     // courseId 로 강의 삭제
     @DeleteMapping("/{courseId}")
     public ResponseEntity<String> deleteByCourseId(@PathVariable Long courseId) {
-        courseService.deleteByCourseId(courseId);
-        String deleteResponseMessage = courseId + "번 강의가 성공적으로 삭제되었습니다.";
-        return new ResponseEntity<>(deleteResponseMessage, HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(courseService.deleteByCourseId(courseId));
     }
     
 }

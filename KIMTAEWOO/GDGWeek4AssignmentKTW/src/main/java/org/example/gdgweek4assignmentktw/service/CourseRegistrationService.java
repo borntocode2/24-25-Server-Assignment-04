@@ -8,8 +8,6 @@ import org.example.gdgweek4assignmentktw.domain.Student;
 import org.example.gdgweek4assignmentktw.dto.courseRegistration.request.CourseRegistrationRequestDto;
 import org.example.gdgweek4assignmentktw.dto.courseRegistration.response.CourseRegistrationListResponseDto;
 import org.example.gdgweek4assignmentktw.dto.courseRegistration.response.CourseRegistrationResponseDto;
-import org.example.gdgweek4assignmentktw.dto.student.response.StudentInfoResponseDto;
-import org.example.gdgweek4assignmentktw.dto.student.response.StudentListResponseDto;
 import org.example.gdgweek4assignmentktw.exception.CourseNotExistsException;
 import org.example.gdgweek4assignmentktw.exception.StudentNotExistsException;
 import org.example.gdgweek4assignmentktw.repository.CourseRegistrationRepository;
@@ -18,9 +16,7 @@ import org.example.gdgweek4assignmentktw.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor // @RequiredArgsConstructor으로 생성자 주입
@@ -61,11 +57,12 @@ public class CourseRegistrationService {
     }
 
     @Transactional
-    public void cancelByCourseRegistrationId(Long registrationId) {
+    public String cancelByCourseRegistrationId(Long registrationId) {
         if(!courseRegistrationRepository.existsById(registrationId)) {
             throw new StudentNotExistsException("존재하지 않는 수강신청 내역입니다. 수강신청 번호를 확인해 주세요.");
         }
         courseRegistrationRepository.deleteById(registrationId);
+        return "요청하신 " + registrationId + "번 수강신청의 취소가 완료되었습니다";
     }
 
     @Transactional(readOnly = true)

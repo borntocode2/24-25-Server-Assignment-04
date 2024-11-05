@@ -3,10 +3,7 @@ package org.example.gdgweek4assignmentktw.dto.courseRegistration.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
-import org.example.gdgweek4assignmentktw.domain.Course;
 import org.example.gdgweek4assignmentktw.domain.CourseRegistration;
-import org.example.gdgweek4assignmentktw.domain.Student;
-
 import java.time.LocalDateTime;
 
 @Builder
