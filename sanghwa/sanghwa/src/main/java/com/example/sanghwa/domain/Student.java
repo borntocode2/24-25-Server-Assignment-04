@@ -14,17 +14,22 @@ import java.util.List;
 @Entity
 public class Student {
     @Id //persistent 임포트할 것
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="student_id")
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "student",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<LectureRegistration> lectureRegistrations = new ArrayList<>();
 
     @Builder
-    public Student(Long id, String name, List<LectureRegistration> lectureRegistrations) {
+    public Student(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.lectureRegistrations = lectureRegistrations;
     }
 
     public void update(String name)

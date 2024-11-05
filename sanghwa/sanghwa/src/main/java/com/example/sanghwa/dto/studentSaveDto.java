@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentSaveDto {
-    private Long id;
     private String name;
 
     public Student toEntity(){
         return Student.builder()
-                .id(id)
                 .name(name)
                 .build();
     }

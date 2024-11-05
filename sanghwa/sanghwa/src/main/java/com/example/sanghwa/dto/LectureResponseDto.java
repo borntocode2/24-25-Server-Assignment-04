@@ -17,13 +17,11 @@ import java.util.List;
 public class LectureResponseDto {
     private Long id;
     private String title;
-    private List<LectureRegistration> lectureRegistrations;
 
     public static LectureResponseDto from(Lecture lecture) {
         return LectureResponseDto.builder()
                 .id(lecture.getId())
                 .title(lecture.getTitle())
-                .lectureRegistrations(lecture.getLectureRegistrations())
                 .build();
     }
 }

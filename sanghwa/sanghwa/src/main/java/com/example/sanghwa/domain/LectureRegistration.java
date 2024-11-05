@@ -3,13 +3,12 @@ package com.example.sanghwa.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 
-
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity //DB에 같은 이름의 테이블하고 매핑된다.
 public class LectureRegistration {
     @Id
@@ -31,8 +30,12 @@ public class LectureRegistration {
         this.student = student;
     }
 
-    public void update(Lecture lecture){
-        this.lecture = lecture;
+    public String getLectureTitle(){
+        return lecture.getTitle();
+    }
+
+    public String getStudentName(){
+        return student.getName();
     }
 }
 

@@ -15,14 +15,12 @@ import java.util.List;
 @Builder
 public class StudentResponseDto {
     private Long id;
-    private String title;
-    private List<LectureRegistration> lectureRegistrations;
+    private String name;
 
     public static StudentResponseDto from(Student student) {
         return StudentResponseDto.builder()
                 .id(student.getId())
-                .title(student.getName())
-                .lectureRegistrations(student.getLectureRegistrations())
+                .name(student.getName())
                 .build();
     }
 }
