@@ -1,10 +1,9 @@
 package com.example.sanghwa.controller;
 
 import com.example.sanghwa.domain.Student;
-import com.example.sanghwa.dto.StudentResponseDto;
-import com.example.sanghwa.dto.StudentSaveDto;
+import com.example.sanghwa.dto.student.StudentResponseDto;
+import com.example.sanghwa.dto.student.StudentSaveDto;
 import com.example.sanghwa.service.StudentService;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/student")
 public class StudentController {
-    private StudentService studentService;
+
+    private final StudentService studentService;//@RequiredArgsConstructor를 선언했을 때 왜 final을 쓰는가?
 
     @PostMapping
     public ResponseEntity<StudentResponseDto> save(@RequestBody StudentSaveDto studentSaveDto) {

@@ -2,9 +2,9 @@ package com.example.sanghwa.service;
 
 import com.example.sanghwa.domain.Student;
 
-import com.example.sanghwa.dto.StudentResponseDto;
+import com.example.sanghwa.dto.student.StudentResponseDto;
 
-import com.example.sanghwa.dto.StudentSaveDto;
+import com.example.sanghwa.dto.student.StudentSaveDto;
 import com.example.sanghwa.repository.StudentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -15,12 +15,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class StudentService {
-    
+
     private final StudentRepository studentRepository;
+
 
     @Transactional
     public StudentResponseDto save(StudentSaveDto studentSaveDto) { //saveDto로 받고
-        Student student = studentSaveDto.toEntity(); //student객체에 saveDto정보를 대입
+        Student student = Student.builder().name(studentSaveDto.getName()).build(); //student객체에 saveDto정보를 대입
         studentRepository.save(student); //student객체 저장
         return StudentResponseDto.from(student); //ResponseDto로 반환
     }

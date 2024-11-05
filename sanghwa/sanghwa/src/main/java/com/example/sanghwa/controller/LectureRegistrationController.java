@@ -1,9 +1,8 @@
 package com.example.sanghwa.controller;
 
 import com.example.sanghwa.domain.LectureRegistration;
-import com.example.sanghwa.dto.LectureResponseDto;
-import com.example.sanghwa.dto.RegistrationResponseDto;
-import com.example.sanghwa.dto.RegistrationSaveDto;
+import com.example.sanghwa.dto.registration.RegistrationResponseDto;
+import com.example.sanghwa.dto.registration.RegistrationSaveDto;
 import com.example.sanghwa.service.LectureRegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,13 +1,10 @@
-package com.example.sanghwa.dto;
+package com.example.sanghwa.dto.lecture;
 
 import com.example.sanghwa.domain.Lecture;
-import com.example.sanghwa.domain.LectureRegistration;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 
 @Getter

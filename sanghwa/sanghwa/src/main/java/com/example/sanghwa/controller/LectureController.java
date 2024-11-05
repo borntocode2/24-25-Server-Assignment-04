@@ -1,11 +1,11 @@
 package com.example.sanghwa.controller;
 
 import com.example.sanghwa.domain.Lecture;
-import com.example.sanghwa.dto.LectureResponseDto;
-import com.example.sanghwa.dto.LectureSaveDto;
+import com.example.sanghwa.dto.lecture.LectureListResponseDto;
+import com.example.sanghwa.dto.lecture.LectureResponseDto;
+import com.example.sanghwa.dto.lecture.LectureSaveDto;
 import com.example.sanghwa.service.LectureService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Fetch;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/lectures")
 public class LectureController {
-    private LectureService lectureService;
+    private final LectureService lectureService; //@RequiredArgsConstructor를 선언했을 때 왜 final을 쓰는가?
 
     @PostMapping
     public ResponseEntity<LectureResponseDto> save(@RequestBody LectureSaveDto lectureSaveDto) {
@@ -23,7 +23,7 @@ public class LectureController {
     }
 
     @GetMapping("/lectureList")
-    public ResponseEntity<List<Lecture>> findAll() {
+    public ResponseEntity<LectureListResponseDto> findAll() {
         return new ResponseEntity<>(lectureService.findLectures(), HttpStatus.CREATED);
     }
 

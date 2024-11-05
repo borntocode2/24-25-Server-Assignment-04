@@ -1,8 +1,9 @@
 package com.example.sanghwa.service;
 
 import com.example.sanghwa.domain.Lecture;
-import com.example.sanghwa.dto.LectureResponseDto;
-import com.example.sanghwa.dto.LectureSaveDto;
+import com.example.sanghwa.dto.lecture.LectureListResponseDto;
+import com.example.sanghwa.dto.lecture.LectureResponseDto;
+import com.example.sanghwa.dto.lecture.LectureSaveDto;
 import com.example.sanghwa.repository.LectureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,13 @@ public class LectureService {
         return LectureResponseDto.from(lecture); //ResponseDto로 반환
     }
 
-    public List<Lecture> findLectures(){  //lectureRepository의 전체 lecture 반환, DTO로 변환할 필요 없지 않나?
-        return lectureRepository.findAll(); //list로 출력하는 stream 사용?
+    public LectureListResponseDto findLectures(){  //lectureRepository의 전체 lecture 반환, DTO로 변환할 필요 없지 않나?
+        List<Lecture> lectures = lectureRepository.findAll();
+        List<LectureResponseDto> lectureDtos = lectures.stream()
+                .map(LectureResponseDto::from)
+                .toList();//list로 출력하는 stream 사용?
+        return LectureListResponseDto.from(lectureDtos);
+
     }
 
     public LectureResponseDto findLectureById(Long id){ //id 받고

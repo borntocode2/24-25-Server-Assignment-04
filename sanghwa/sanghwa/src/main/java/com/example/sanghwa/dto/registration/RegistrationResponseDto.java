@@ -1,7 +1,6 @@
-package com.example.sanghwa.dto;
+package com.example.sanghwa.dto.registration;
 
 import com.example.sanghwa.domain.LectureRegistration;
-import jakarta.servlet.Registration;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

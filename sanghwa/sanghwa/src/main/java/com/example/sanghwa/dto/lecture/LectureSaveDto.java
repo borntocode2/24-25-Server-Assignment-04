@@ -1,4 +1,4 @@
-package com.example.sanghwa.dto;
+package com.example.sanghwa.dto.lecture;
 
 import com.example.sanghwa.domain.Lecture;
 import lombok.AllArgsConstructor;

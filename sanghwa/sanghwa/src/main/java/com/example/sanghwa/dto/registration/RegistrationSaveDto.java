@@ -1,11 +1,9 @@
-package com.example.sanghwa.dto;
+package com.example.sanghwa.dto.registration;
 
-import com.example.sanghwa.domain.Lecture;
 import com.example.sanghwa.domain.LectureRegistration;
 
 import com.example.sanghwa.repository.LectureRepository;
 import com.example.sanghwa.repository.StudentRepository;
-import jakarta.persistence.Id;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

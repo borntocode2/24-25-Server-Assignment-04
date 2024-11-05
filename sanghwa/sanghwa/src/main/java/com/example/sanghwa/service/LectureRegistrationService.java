@@ -1,9 +1,8 @@
 package com.example.sanghwa.service;
 
 import com.example.sanghwa.domain.LectureRegistration;
-import com.example.sanghwa.domain.Student;
-import com.example.sanghwa.dto.RegistrationResponseDto;
-import com.example.sanghwa.dto.RegistrationSaveDto;
+import com.example.sanghwa.dto.registration.RegistrationResponseDto;
+import com.example.sanghwa.dto.registration.RegistrationSaveDto;
 import com.example.sanghwa.repository.LectureRegistrationRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
