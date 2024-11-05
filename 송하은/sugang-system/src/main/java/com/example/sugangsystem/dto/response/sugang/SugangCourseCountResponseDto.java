@@ -6,7 +6,7 @@ import java.util.Map;
 
 @Getter
 @Builder
-public class GetCountByCourseResponseDto {
+public class SugangCourseCountResponseDto {
 
     private Long courseId;
     private String courseTitle;
@@ -14,8 +14,8 @@ public class GetCountByCourseResponseDto {
     private Long count;
 
     // entity -> dto
-    public static GetCountByCourseResponseDto from(Map<String,Object> data) {
-        return GetCountByCourseResponseDto.builder()
+    public static SugangCourseCountResponseDto from(Map<String,Object> data) {
+        return SugangCourseCountResponseDto.builder()
                 .courseId((Long)data.get("강의번호"))
                 .courseTitle((String) data.get("강의명"))
                 .professor((String)data.get("교수"))
