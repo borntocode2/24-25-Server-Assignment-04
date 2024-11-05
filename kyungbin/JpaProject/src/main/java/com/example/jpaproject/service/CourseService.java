@@ -18,7 +18,7 @@ public class CourseService {
     //Create : 새로운 과목을 생성한다.
     public CourseInfoResponseDto save(CourseSaveRequestDto courseSaveRequestDto) {
         // 전달받은 Dto를 엔터티로 변환하여 Repository에 저장한다.
-        Course cours = courseSaveRequestDto.toEntity();
+        Course cours = courseSaveRequestDto.toEntity(courseSaveRequestDto);
         courseRepository.save(cours);
 
         return CourseInfoResponseDto.from(cours); //클라이언트한테 갈 정보

@@ -39,7 +39,7 @@ public class StudentService {
     public StudentInfoResponseDto updateByStudentId(int id, StudentSaveRequestDto studentSaveRequestDto) {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("없는 학생 id입니다."));
-        student.update(studentSaveRequestDto.getName(), studentSaveRequestDto.getMajor());
+            student.update(studentSaveRequestDto.getName(), studentSaveRequestDto.getMajor());
 
         return StudentInfoResponseDto.from(student);
 

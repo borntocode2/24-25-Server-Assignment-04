@@ -23,14 +23,19 @@ public class StudentCourseController {
     }
 
     @GetMapping("/{studentcourseId}")
-    public ResponseEntity<StudentCourseInfoResponseDto> findByBookId(@PathVariable(name = "studentCoursed") int studentCourseId) {
-        return new ResponseEntity<>(studentCourseService.findByStudentCourseId(studentCourseId), HttpStatus.OK);
+    public ResponseEntity<StudentCourseInfoResponseDto> findByStudentCourseId(@PathVariable(name = "studentcourseId") int studentcourseId) {
+        return new ResponseEntity<>(studentCourseService.findByStudentCourseId(studentcourseId), HttpStatus.OK);
     }
     @DeleteMapping("/{studentCourseId}")
     public ResponseEntity<StudentCourseInfoResponseDto> deleteByStudentCourseId(@PathVariable(name = "studentCourseId") int studentCourseId) {
         studentCourseService.deleteByStudentCourseId(studentCourseId);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<StudentCourseInfoResponseDto>> findAll() {
+        return new ResponseEntity<>(studentCourseService.findAll(), HttpStatus.OK);
     }
 
 }

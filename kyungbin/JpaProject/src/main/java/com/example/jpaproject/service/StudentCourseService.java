@@ -8,7 +8,6 @@ import com.example.jpaproject.dto.StudentCourseDto.StudentCourseSaveRequestDto;
 import com.example.jpaproject.repository.CourseRepository;
 import com.example.jpaproject.repository.StudentCourseRepository;
 import com.example.jpaproject.repository.StudentRepository;
-import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +31,7 @@ public class StudentCourseService {
         Student student = studentRepository.findById(studentCourseSaveRequestDto.getStudentId())
                 .orElseThrow(() -> new RuntimeException("없는 학생입니다."));
 
+        // setvice에서 builder한거임
         StudentCourse studentCourse = StudentCourse.builder()
                 .student(student)
                 .course(course)
@@ -44,8 +44,8 @@ public class StudentCourseService {
 
     // 수강신청 조회 기능
     @Transactional(readOnly = true)
-    public StudentCourseInfoResponseDto findByStudentCourseId(int studentCourseId) {
-        StudentCourse studentCourse = studentCourseRepository.findById(studentCourseId)
+    public StudentCourseInfoResponseDto findByStudentCourseId(int studentcourseId) {
+        StudentCourse studentCourse = studentCourseRepository.findById(studentcourseId)
                 .orElseThrow(()-> new RuntimeException("없는 수강신청 기록입니다."));
 
         return StudentCourseInfoResponseDto.from(studentCourse);

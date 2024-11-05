@@ -13,10 +13,10 @@ public class CourseSaveRequestDto {
     private String subjectName;
     private int roomNum;
 
-    public Course toEntity(){
+    public Course toEntity(CourseSaveRequestDto dto){
         return Course.builder()
-                .subjectName(subjectName)
-                .roomNum(roomNum)
+                .subjectName(dto.getSubjectName())
+                .roomNum(dto.getRoomNum())
                 .build();
     }
 }
