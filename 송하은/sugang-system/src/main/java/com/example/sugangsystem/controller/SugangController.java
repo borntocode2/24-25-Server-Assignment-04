@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/sugangs")
+@RequestMapping("/api/sugangs")
 public class SugangController {
 
     private final SugangService sugangService;
