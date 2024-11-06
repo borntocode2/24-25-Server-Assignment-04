@@ -1,7 +1,11 @@
 package com.example.sanghwa.service;
 
+import com.example.sanghwa.domain.Lecture;
 import com.example.sanghwa.domain.Student;
 
+import com.example.sanghwa.dto.lecture.LectureListResponseDto;
+import com.example.sanghwa.dto.lecture.LectureResponseDto;
+import com.example.sanghwa.dto.student.StudentListResponseDto;
 import com.example.sanghwa.dto.student.StudentResponseDto;
 
 import com.example.sanghwa.dto.student.StudentSaveDto;
@@ -15,9 +19,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class StudentService {
-
     private final StudentRepository studentRepository;
-
 
     @Transactional
     public StudentResponseDto save(StudentSaveDto studentSaveDto) { //saveDto로 받고
@@ -25,9 +27,12 @@ public class StudentService {
         studentRepository.save(student); //student객체 저장
         return StudentResponseDto.from(student); //ResponseDto로 반환
     }
-    @Transactional
-    public List<Student> findStudents(){  //studentRepository의 전체 student 반환, DTO로 변환할 필요 없지 않나?
-        return studentRepository.findAll();
+    public StudentListResponseDto findStudents(){
+        List<Student> students = studentRepository.findAll();
+        List<StudentResponseDto> studentDtos = students.stream()
+                .map(StudentResponseDto::from)
+                .toList();//list로 출력하는 stream 사용?
+        return StudentListResponseDto.from(studentDtos);
     }
 
     @Transactional
@@ -36,7 +41,7 @@ public class StudentService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다."));
         return StudentResponseDto.from(student); //ResponseDto로 변환하여 반환
     }
-
+    @Transactional //더티체킹을 위해서
     public StudentResponseDto updateStudent(Long id, StudentSaveDto studentSaveDto) {
         Student student = studentRepository.findById(id) //
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다."));
@@ -44,11 +49,9 @@ public class StudentService {
         return StudentResponseDto.from(student);
     }
 
+    @Transactional
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
-
-
-
 }
 

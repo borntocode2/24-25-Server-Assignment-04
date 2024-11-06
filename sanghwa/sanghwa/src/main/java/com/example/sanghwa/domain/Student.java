@@ -19,11 +19,7 @@ public class Student {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "student",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LectureRegistration> lectureRegistrations = new ArrayList<>();
 
     @Builder

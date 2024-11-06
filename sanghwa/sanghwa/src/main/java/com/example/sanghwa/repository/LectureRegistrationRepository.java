@@ -9,6 +9,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface LectureRegistrationRepository extends JpaRepository<LectureRegistration, Long> {
-    @Query("SELECT r FROM LectureRegistration r WHERE r.student.id = :studentId")
-    List<LectureRegistration> findByStudentId(Long studentId);
+    List<LectureRegistration> findByStudent_Id(Long studentId); //lectureRegistration에서 StdentId를 가져와서 찾는 쿼리 작성해야댐..
 }

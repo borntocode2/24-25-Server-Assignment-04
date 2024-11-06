@@ -5,6 +5,7 @@ import com.example.sanghwa.dto.lecture.LectureListResponseDto;
 import com.example.sanghwa.dto.lecture.LectureResponseDto;
 import com.example.sanghwa.dto.lecture.LectureSaveDto;
 import com.example.sanghwa.repository.LectureRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,27 +17,29 @@ public class LectureService {
 
     private final LectureRepository lectureRepository;
 
+    @Transactional
     public LectureResponseDto save(LectureSaveDto lectureSaveDto) { //saveDto로 받고
         Lecture lecture = lectureSaveDto.toEntity();
         lectureRepository.save(lecture); //lecture객체 저장
         return LectureResponseDto.from(lecture); //ResponseDto로 반환
     }
-
+    @Transactional
     public LectureListResponseDto findLectures(){  //lectureRepository의 전체 lecture 반환, DTO로 변환할 필요 없지 않나?
         List<Lecture> lectures = lectureRepository.findAll();
         List<LectureResponseDto> lectureDtos = lectures.stream()
                 .map(LectureResponseDto::from)
                 .toList();//list로 출력하는 stream 사용?
         return LectureListResponseDto.from(lectureDtos);
-
     }
 
+    @Transactional
     public LectureResponseDto findLectureById(Long id){ //id 받고
         Lecture lecture = lectureRepository.findById(id) //레포지토리 id 찾아 객체 생성
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강의입니다."));
         return LectureResponseDto.from(lecture); //ResponseDto로 변환하여 반환
     }
 
+    @Transactional
     public LectureResponseDto updateLecture(Long id, LectureSaveDto lectureSaveDto) { //title만 받을 수도 있는데 속성이 늘어날 수도 있으니
         Lecture lecture = lectureRepository.findById(id) //
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강의입니다."));
@@ -44,10 +47,8 @@ public class LectureService {
         return LectureResponseDto.from(lecture);
     }
 
+    @Transactional
     public void deleteLecture(Long id) {
         lectureRepository.deleteById(id);
     }
-
-
-
 }

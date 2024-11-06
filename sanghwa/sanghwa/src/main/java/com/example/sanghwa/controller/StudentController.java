@@ -1,6 +1,7 @@
 package com.example.sanghwa.controller;
 
 import com.example.sanghwa.domain.Student;
+import com.example.sanghwa.dto.student.StudentListResponseDto;
 import com.example.sanghwa.dto.student.StudentResponseDto;
 import com.example.sanghwa.dto.student.StudentSaveDto;
 import com.example.sanghwa.service.StudentService;
@@ -24,21 +25,21 @@ public class StudentController {
     }
 
     @GetMapping("/studentList")
-    public ResponseEntity<List<Student>> findAll() {
+    public ResponseEntity<StudentListResponseDto> findAll() {
         return new ResponseEntity<>(studentService.findStudents(), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{id}") //1명의 학생 찾기
     public ResponseEntity<StudentResponseDto> findByStudentId(@PathVariable Long id) {
         return new ResponseEntity<>(studentService.findStudentById(id), HttpStatus.OK);
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping("{id}") //id로 학생정보 수정, name만 받아도 되지만 추후 속성 추가를 고려하여 Dto객체 받음
     public ResponseEntity<StudentResponseDto> update(@PathVariable Long id, @RequestBody StudentSaveDto studentSaveDto) {
         return new ResponseEntity<>(studentService.updateStudent(id, studentSaveDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("{id}") //id로 삭제
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return new ResponseEntity<>(HttpStatus.OK);
