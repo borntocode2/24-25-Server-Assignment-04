@@ -1,8 +1,8 @@
 spring:
   datasource: #DB ??? ?? ??? 8080 ??? mysql?? ???? ??? 3306
-    url: jdbc:mysql://localhost:3306/student_lecture
-    username: root
-    password:
+    url: ${DB_JDBC_URL}
+    username: ${DB_USER_NAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
