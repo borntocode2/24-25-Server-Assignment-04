@@ -37,6 +37,7 @@ public class LectureRegistrationService {
         lectureRegistrationRepository.save(lectureRegistration);
         return RegistrationResponseDto.from(lectureRegistration);
     }
+
     @Transactional
     public List<RegistrationListResponseDto> findAllRegistrationById(Long id){ //학생의 id로 수강신청 리스트 get
         List<LectureRegistration> lectureRegistrations = lectureRegistrationRepository.findByStudent_Id(id);
@@ -44,6 +45,7 @@ public class LectureRegistrationService {
                 .map(RegistrationListResponseDto::from)
                 .toList();
     }
+
     @Transactional
     public List<RegistrationResponseDto> getAllRegistration(){
         List<LectureRegistration> lectureRegistrations = lectureRegistrationRepository.findAll();
@@ -51,6 +53,7 @@ public class LectureRegistrationService {
                 .map(RegistrationResponseDto::from)
                 .toList();
     }
+
     @Transactional
     public void deleteRegistrationById(Long id){
         if(!lectureRegistrationRepository.existsById(id))

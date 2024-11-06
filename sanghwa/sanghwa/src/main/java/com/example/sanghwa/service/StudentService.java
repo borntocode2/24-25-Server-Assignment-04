@@ -27,6 +27,7 @@ public class StudentService {
         studentRepository.save(student); //student객체 저장
         return StudentResponseDto.from(student); //ResponseDto로 반환
     }
+
     public StudentListResponseDto findStudents(){
         List<Student> students = studentRepository.findAll();
         List<StudentResponseDto> studentDtos = students.stream()
@@ -41,6 +42,7 @@ public class StudentService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 학생입니다."));
         return StudentResponseDto.from(student); //ResponseDto로 변환하여 반환
     }
+
     @Transactional //더티체킹을 위해서
     public StudentResponseDto updateStudent(Long id, StudentSaveDto studentSaveDto) {
         Student student = studentRepository.findById(id) //
