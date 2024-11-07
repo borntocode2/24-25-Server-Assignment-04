@@ -16,39 +16,20 @@ import java.util.List;
 @Builder
 public class EnrolmentInfoResponseDto {
     private Long enrolmentId;
-    private Long studentId;
-    private Long coursesId;
-    private String studentName;
+    private Long studentId;      // 학생 ID
+    private String studentName;  // 학생 이름
+    private Long courseId;       // 강의 ID
     private String courseName;
     private List<EnrolmentInfoResponseDto> students;
     private List<EnrolmentInfoResponseDto> courses;
 
-    public EnrolmentInfoResponseDto(String studentName, Long studentId, String courseName, Long coursesId) {
-        this.studentName = studentName;
-        this.studentId = studentId;
-        this.courseName = courseName;
-        this.coursesId = coursesId;
 
-    }
-
-    public EnrolmentInfoResponseDto(List<EnrolmentInfoResponseDto> students, List<EnrolmentInfoResponseDto> courses) {
-        this.students = students;
-        this.courses = courses;
-    }
-
-
-    public static EnrolmentInfoResponseDto from(Student student) {
-        return new EnrolmentInfoResponseDto(student.getName(), student.getId(), null, null);
-    }
-    public static EnrolmentInfoResponseDto from(Student student, Courses courses) {
-        return new EnrolmentInfoResponseDto(student.getName(), student.getId(), courses.getName(), courses.getId());
-    }
     public static EnrolmentInfoResponseDto from(Enrolment enrolment) {
         return EnrolmentInfoResponseDto.builder()
                 .enrolmentId(enrolment.getId())
                 .studentId(enrolment.getStudent().getId())
-                .coursesId(enrolment.getCourses().getId())
                 .studentName(enrolment.getStudent().getName())
+                .courseId(enrolment.getCourses().getId())
                 .courseName(enrolment.getCourses().getName())
                 .build();
     }

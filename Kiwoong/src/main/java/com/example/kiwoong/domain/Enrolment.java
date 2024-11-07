@@ -22,16 +22,14 @@ public class Enrolment {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @Getter
     @ManyToOne
     @JoinColumn(name = "courses_id")
     private Courses courses;
 
-    private Enrolment(Student student, Courses courses) {
-        this.student = student;
-        this.courses = courses;
-    }
-    public static Enrolment of(Student student, Courses courses) {
-        return new Enrolment(student, courses);
+    public static Enrolment createEnrolment(Student student, Courses courses) {
+        Enrolment enrolment = new Enrolment();
+        enrolment.student = student;
+        enrolment.courses = courses;
+        return enrolment;
     }
 }

@@ -10,16 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class StudentRequestDto {
 
+    private Long id;
     private Long studentNumber;
-
     private String name;
-
     private Long age;
-
     private String major;
 
     public Student toEntity() {
         return Student.builder()
+                .id(id)
                 .studentNumber(studentNumber)
                 .name(name)
                 .age(age)

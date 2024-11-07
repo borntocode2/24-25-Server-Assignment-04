@@ -11,19 +11,19 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class StudentInfoResponseDto {
+    private Long id;
     private Long studentNumber;
     private String name;
     private Long age;
     private String major;
-    private List<Courses> courses;
 
     public static StudentInfoResponseDto from(Student student) {
         return StudentInfoResponseDto.builder()
+                .id(student.getId())
                 .studentNumber(student.getStudentNumber())
                 .name(student.getName())
                 .age(student.getAge())
                 .major(student.getMajor())
-                .courses(student.getCourses())
                 .build();
     }
 }

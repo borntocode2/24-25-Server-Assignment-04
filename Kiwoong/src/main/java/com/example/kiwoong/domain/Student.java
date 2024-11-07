@@ -32,10 +32,13 @@ public class Student {
     //fetch는 불러오는 방식 설정
     //cascade all은 persist(부모와 자식을 한번에 영속화)와 remove(persist로 저장해놓은 엔티티 제거)를 모두 해줌
     //orphanRemoval = true 는 고아 객체를 자동으로 지워줌
-    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Courses> courses = new ArrayList<>();
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Enrolment> enrolments = new ArrayList<>();
 
     public void update(StudentRequestDto dto) {
+        if (dto.getId() != null) {
+            this.id = dto.getId();
+        }
         if (dto.getStudentNumber() != null) {
             this.studentNumber = dto.getStudentNumber();
         }
@@ -51,11 +54,11 @@ public class Student {
     }
 
     @Builder
-    public Student(Long studentNumber, String name, Long age, String major, List<Courses> courses){
+    public Student(Long id, Long studentNumber, String name, Long age, String major){
+        this.id = id;
         this.studentNumber = studentNumber;
         this.name = name;
         this.age = age;
         this.major = major;
-        this.courses = courses;
     }
 }

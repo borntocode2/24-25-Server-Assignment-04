@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -26,9 +29,8 @@ public class Courses {
     @Column(name = "courses_room")
     private String room;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @OneToMany(mappedBy = "courses", cascade = CascadeType.ALL)
+    private List<Enrolment> enrolments = new ArrayList<>();
 
     public void update(CoursesRequestDto dto) {
         if (dto.getId() != null) {
@@ -51,6 +53,5 @@ public class Courses {
         this.name = name;
         this.day = day;
         this.room = room;
-        this.student = student;
     }
 }
